@@ -28,7 +28,7 @@ Transformations used to produce tidy_means:
 
 
 
-Import Files    
+Import Files.    
 =============
 ```
 activity_labels <- read.table("activity_labels.txt", stringsAsFactors=FALSE,
@@ -56,83 +56,84 @@ y_test <- read.table("test/y_test.txt", stringsAsFactors=FALSE,
                      strip.white = TRUE)
 ```
 
-Uses descriptive activity names to name the activities in the data set    
+Uses descriptive activity names to name the activities in the data set.    
 =======================================================================
-Define data frame to hold discriptive labels for activity preformed in experiments
+Define data frame to hold descriptive labels for activity preformed in experiments.
 Both of these data frames will be used as the first column in the intermediate data frames
-train and test
-
+train and test.
+```
 desc_y_train <- data.frame(V1 = character(7352),  stringsAsFactors=FALSE)
 desc_y_test <- data.frame(V1 = character(2947),  stringsAsFactors=FALSE)
-
+```
 Rename activities with descriptive names. For loop populates desc_y_train and desc_y_test
-using the labels contained in the activity_labels data frame
-
+using the labels contained in the activity_labels data frame.
+```
 for(i in 1:6){
     
     desc_y_train[y_train == i,] <- activity_labels[i,2]
     desc_y_test[y_test == i,] <- activity_labels[i,2]
 }
 rm(i)
-
-Define and fill data frame to hold discriptive labels for test and train data
-
+```
+Define and fill data frame to hold discriptive labels for test and train data.
+```
 desc_test <- data.frame(V1 = character(2947), stringsAsFactors=FALSE)
 desc_test[,1] <- "test"
 
 desc_train <- data.frame(V1 = character(7352), stringsAsFactors=FALSE)
 desc_train[,1] <- "train"
-
+```
 
 Merges the training and the test sets to create one data set.   
-
+==============================================================
 
 Combine test and train data into one data set.  Train and test data are combined vertically 
-with their respective data and then are combined vertically to form the complete data frame group
-
+with their respective data and then are combined vertically to form the complete data frame group.
+```
 train <- cbind(desc_y_train, desc_train, subject_train, X_train)
 test <- cbind(desc_y_test, desc_test, subject_test,  X_test)
 group <- rbind(train, test)
-
+```
 
 Appropriately labels the data set with descriptive variable names.   
 ==================================================================
 
 Label combined group data set with descriptive variable names.  Labels are taken from the features data frame
 and combined along with "Activity", "Data Type", "Volunteer" and inserted into the column names.
-
+```
 group_colnames <- c("Activity","Data Type","Volunteer",features[,2])
 colnames(group) <- group_colnames
-
+```
 
 Extracts only the measurements on the mean     
 and standard deviation for each measurement.  
+============================================
 
-
-grep() searches colmnames for "mean" and "std" and retuns columns numbers that contain either
-
+Grep() searches colmnames for "mean" and "std" and retuns columns numbers that contain either.
+```
 mean_colnames <- grep("mean|std", colnames(group), ignore.case=TRUE)
 mean_colnames <- c(1,2,3,mean_colnames)
-
+```
 Defines tidy_group data frame with measures mean and std contained in the colum names.
-
+```
 tidy_group <- group[,mean_colnames]
-
+```
 
 Creates a second, independent tidy data set with the 
 average of each variable for each activity and each subject.          
 =============================================================
+```
 i = 1
 j = 1
 k = 1
-
+```
 Defines tidy_means to contain means of the tidy_group data.
-
+```
 tidy_means <- data.frame(matrix(NA, nrow = 180, ncol = 89))
-
+```
 For loop separates data by activities and volunteers takes the means of the columns and 
 and inserts this data into the data frame tidy_means.
-
+```
 for(i in 1:30){
     
     for(k in 1:6){
@@ -146,25 +147,24 @@ for(i in 1:30){
     j = j + 1
     }
 }
-
-Adds column names to the data frame tidy_means
-
+```
+Adds column names to the data frame tidy_means.
+```
 colnames(tidy_means) <- colnames(tidy_group)
-
-removes column 2
-
+```
+Removes column two.
+```
 tidy_means[,2] <- NULL
-
-prints tidy_means in viewer
-
+```
+Prints tidy_means in viewer.
+```
 View(tidy_means)
-
-writes text file of tidy_means data frame to the working directory
-
+```
+Writes text file of tidy_means data frame to the working directory.
+```
 write.table(tidy_means, file = "tidy_means.txt", sep="\t",col.names = TRUE,
             row.names = FALSE)
-
-
+```
 
 
 
