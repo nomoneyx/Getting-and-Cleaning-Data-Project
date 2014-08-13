@@ -58,15 +58,14 @@ y_test <- read.table("test/y_test.txt", stringsAsFactors=FALSE,
 
 Uses descriptive activity names to name the activities in the data set.    
 =======================================================================
-Define data frame to hold descriptive labels for activity preformed in experiments.
-Both of these data frames will be used as the first column in the intermediate data frames
+
+Define data frame to hold descriptive labels for activity preformed in experiments. Both of these data frames will be used as the first column in the intermediate data frames
 train and test.
 ```
 desc_y_train <- data.frame(V1 = character(7352),  stringsAsFactors=FALSE)
 desc_y_test <- data.frame(V1 = character(2947),  stringsAsFactors=FALSE)
 ```
-Rename activities with descriptive names. For loop populates desc_y_train and desc_y_test
-using the labels contained in the activity_labels data frame.
+Rename activities with descriptive names. For loop populates desc_y_train and desc_y_test using the labels contained in the activity_labels data frame.
 ```
 for(i in 1:6){
     
@@ -87,8 +86,7 @@ desc_train[,1] <- "train"
 Merges the training and the test sets to create one data set.   
 ==============================================================
 
-Combine test and train data into one data set.  Train and test data are combined vertically 
-with their respective data and then are combined vertically to form the complete data frame group.
+Combine test and train data into one data set.  Train and test data are combined vertically with their respective data and then are combined vertically to form the complete data frame group.
 ```
 train <- cbind(desc_y_train, desc_train, subject_train, X_train)
 test <- cbind(desc_y_test, desc_test, subject_test,  X_test)
@@ -98,8 +96,7 @@ group <- rbind(train, test)
 Appropriately labels the data set with descriptive variable names.   
 ==================================================================
 
-Label combined group data set with descriptive variable names.  Labels are taken from the features data frame
-and combined along with "Activity", "Data Type", "Volunteer" and inserted into the column names.
+Label combined group data set with descriptive variable names.  Labels are taken from the features data frame and combined along with "Activity", "Data Type", "Volunteer" and inserted into the column names.
 ```
 group_colnames <- c("Activity","Data Type","Volunteer",features[,2])
 colnames(group) <- group_colnames
@@ -131,8 +128,7 @@ Defines tidy_means to contain means of the tidy_group data.
 ```
 tidy_means <- data.frame(matrix(NA, nrow = 180, ncol = 89))
 ```
-For loop separates data by activities and volunteers takes the means of the columns and 
-and inserts this data into the data frame tidy_means.
+For loop separates data by activities and volunteers takes the means of the columns and inserts this data into the data frame tidy_means.
 ```
 for(i in 1:30){
     
