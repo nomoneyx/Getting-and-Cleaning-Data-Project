@@ -108,7 +108,7 @@ colnames(group) <- group_colnames
 Extracts only the measurements on the mean and standard deviation for each measurement.  
 =======================================================================================
 
-Grep() searches colmnames for "mean" and "std" and retuns columns numbers that contain either.
+Grep() searches column names for "mean" and "std" and retuns columns numbers that contain either.
 ```
 mean_colnames <- grep("mean|std", colnames(group), ignore.case=TRUE)
 mean_colnames <- c(1,2,3,mean_colnames)
@@ -118,9 +118,9 @@ Defines tidy_group data frame with measures mean and std contained in the colum 
 tidy_group <- group[,mean_colnames]
 ```
 
-Creates a second, independent tidy data set with the 
-average of each variable for each activity and each subject.          
-=============================================================
+Creates a second, independent tidy data set with the average of each variable for each activity and each subject.          
+=================================================================================================================
+
 ```
 i = 1
 j = 1
