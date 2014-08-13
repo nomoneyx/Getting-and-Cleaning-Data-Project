@@ -85,7 +85,11 @@ tidy_group <- group[,mean_colnames]
 i = 1
 j = 1
 k = 1
+#Defines tidy_means to contain means of the tidy_group data.
 tidy_means <- data.frame(matrix(NA, nrow = 180, ncol = 89))
+
+#For loop separates data by activities and volunteers takes the means of the columns and 
+#and inserts this data into the data frame tidy_means.
 for(i in 1:30){
     
     for(k in 1:6){
@@ -100,12 +104,16 @@ for(i in 1:30){
     }
 }
 
+#Adds column names to the data frame tidy_means
 colnames(tidy_means) <- colnames(tidy_group)
 
+#removes column 2
 tidy_means[,2] <- NULL
 
+#prints tidy_means in viewer
 View(tidy_means)
 
+#writes text file of tidy_means data frame to the working directory
 write.table(tidy_means, file = "tidy_means.txt", sep="\t",col.names = TRUE,
             row.names = FALSE)
 
