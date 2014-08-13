@@ -88,8 +88,8 @@ k = 1
 #Defines tidy_means to contain means of the tidy_group data.
 tidy_means <- data.frame(matrix(NA, nrow = 180, ncol = 89))
 
-#For loop separates data by activities and volunteers takes the means of the columns and 
-#and inserts this data into the data frame tidy_means.
+#For loop separates data by activities and volunteers, takes the means of the 
+#columns and inserts this data into the data frame tidy_means.
 for(i in 1:30){
     
     for(k in 1:6){
