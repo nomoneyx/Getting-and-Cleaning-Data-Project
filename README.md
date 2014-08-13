@@ -121,6 +121,7 @@ tidy_group <- group[,mean_colnames]
 Creates a second, independent tidy data set with the average of each variable for each activity and each subject.          
 =================================================================================================================
 
+Define loop counters.
 ```
 i = 1
 j = 1
