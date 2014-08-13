@@ -105,9 +105,8 @@ group_colnames <- c("Activity","Data Type","Volunteer",features[,2])
 colnames(group) <- group_colnames
 ```
 
-Extracts only the measurements on the mean     
-and standard deviation for each measurement.  
-============================================
+Extracts only the measurements on the mean and standard deviation for each measurement.  
+=======================================================================================
 
 Grep() searches colmnames for "mean" and "std" and retuns columns numbers that contain either.
 ```
