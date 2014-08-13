@@ -30,7 +30,7 @@ Transformations used to produce tidy_means:
 
 Import Files    
 =============
-{
+```
 activity_labels <- read.table("activity_labels.txt", stringsAsFactors=FALSE,
                               strip.white = TRUE)
 
@@ -54,7 +54,7 @@ X_test <- read.table("test/X_test.txt", stringsAsFactors=FALSE,
 
 y_test <- read.table("test/y_test.txt", stringsAsFactors=FALSE, 
                      strip.white = TRUE)
-}
+```
 
 Uses descriptive activity names to name the activities in the data set    
 =======================================================================
